@@ -1,4 +1,5 @@
 #include <QCoreApplication>
+#include <server.h>
 
 static const QString ORGANIZATION_NAME("UNN");
 static const QString ORGANIZATION_DOMAIN("pizza.ru");
@@ -12,6 +13,8 @@ int main(int argc, char *argv[])
   QCoreApplication::setApplicationName(APPLICATION_NAME);
 
   QCoreApplication a(argc, argv);
+
+  Server serv;
 
   return a.exec();
 }

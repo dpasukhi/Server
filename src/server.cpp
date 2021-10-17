@@ -1,5 +1,5 @@
 #include <server.h>
-
+#include "handlerbd.h"
 #include <QtSql>
 
 
@@ -11,4 +11,6 @@ Server::Server(QObject *parent) : QObject(parent)
   {
     qDebug() << "Error: creation of database crashed";
   }
+
+  HandlerBD worker;
 }

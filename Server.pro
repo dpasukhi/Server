@@ -12,8 +12,9 @@ CONFIG -= app_bundle
 VPATH += ./src
 
 SOURCES += \
+        handlerbd.cpp \
         main.cpp \
-        server.cpp
+        server.cpp \
 
 include(3drparty/qtservice/src/qtservice.pri)
 include(3drparty/qtservice/common.pri)
@@ -24,7 +25,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    ./include/server.h
+    ./include/server.h \
+    ./include/handlerbd.h \
 
 INCLUDEPATH = ./include/ \
     3drparty/qtservice/src
