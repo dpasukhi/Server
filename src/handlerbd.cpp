@@ -37,7 +37,7 @@ QVector<QMap<QString, QString> > HandlerBD::officeTable_getAll(){
     map.insert("id_office", a_query.value(0).toString());
     map.insert("office", a_query.value(1).toString());
 
-    result.emplace_back(map);
+    result.push_back(map);
   }
 
   return result;
@@ -84,7 +84,7 @@ QVector<QMap<QString, QString>> HandlerBD::productsTable_getAll()
     map.insert("pizza_name", a_query.value(1).toString());
     map.insert("cost", a_query.value(2).toString());
 
-    result.emplace_back(map);
+    result.push_back(map);
   }
 
   return result;
