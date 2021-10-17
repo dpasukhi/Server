@@ -2,6 +2,7 @@
 #define SERVER_H
 
 #include <QObject>
+#include <qtservice.h>
 
 class Server : public QObject
 {

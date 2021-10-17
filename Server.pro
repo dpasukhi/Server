@@ -15,6 +15,9 @@ SOURCES += \
         main.cpp \
         server.cpp
 
+include(3drparty/qtservice/src/qtservice.pri)
+include(3drparty/qtservice/common.pri)
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -23,4 +26,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     ./include/server.h
 
-INCLUDEPATH = ./include/
+INCLUDEPATH = ./include/ \
+    3drparty/qtservice/src
