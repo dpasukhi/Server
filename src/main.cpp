@@ -1,20 +1,90 @@
+/**
+  @file
+  @author Stefan Frings
+*/
+
 #include <QCoreApplication>
-#include <server.h>
+#include <QDir>
+#include "./include/global.h"
+#include "httplistener.h"
+#include "./include/requestmapper.h"
 
-static const QString ORGANIZATION_NAME("UNN");
-static const QString ORGANIZATION_DOMAIN("pizza.ru");
-static const QString APPLICATION_NAME("Pizza for you Server");
-static const QString SETTINGS_TRAY("settings/tray");
+using namespace stefanfrings;
 
+/** Search the configuration file */
+QString searchConfigFile()
+{
+    QString binDir=QCoreApplication::applicationDirPath();
+    QString fileName("Server.ini");
+
+    QStringList searchList;
+    searchList.append(binDir);
+    searchList.append(binDir+"/etc");
+    searchList.append(binDir+"/../etc");
+    searchList.append(binDir+"/../Server/etc"); // for development with shadow build (Linux)
+    searchList.append(binDir+"/../../Server/etc"); // for development with shadow build (Windows)
+    searchList.append(QDir::rootPath()+"etc/opt");
+    searchList.append(QDir::rootPath()+"etc");
+
+    foreach (QString dir, searchList)
+    {
+        QFile file(dir+"/"+fileName);
+        if (file.exists())
+        {
+            fileName=QDir(file.fileName()).canonicalPath();
+            qDebug("Using config file %s",qPrintable(fileName));
+            return fileName;
+        }
+    }
+
+    // not found
+    foreach (QString dir, searchList)
+    {
+        qWarning("%s/%s not found",qPrintable(dir),qPrintable(fileName));
+    }
+    qFatal("Cannot find config file %s",qPrintable(fileName));
+    return nullptr;
+}
+
+
+/**
+  Entry point of the program.
+*/
 int main(int argc, char *argv[])
 {
-  QCoreApplication::setOrganizationName(ORGANIZATION_NAME);
-  QCoreApplication::setOrganizationDomain(ORGANIZATION_DOMAIN);
-  QCoreApplication::setApplicationName(APPLICATION_NAME);
+    QCoreApplication app(argc,argv);
+    app.setApplicationName("Server");
 
-  QCoreApplication a(argc, argv);
+    // Find the configuration file
+    QString configFileName=searchConfigFile();
 
-  Server serv;
+    // Configure logging into a file
+    QSettings* logSettings=new QSettings(configFileName,QSettings::IniFormat,&app);
+    logSettings->beginGroup("logging");
+    FileLogger* logger=new FileLogger(logSettings,10000,&app);
+    logger->installMsgHandler();
 
-  return a.exec();
+    // Configure template loader and cache
+    QSettings* templateSettings=new QSettings(configFileName,QSettings::IniFormat,&app);
+    templateSettings->beginGroup("templates");
+    templateCache=new TemplateCache(templateSettings,&app);
+
+    // Configure session store
+    QSettings* sessionSettings=new QSettings(configFileName,QSettings::IniFormat,&app);
+    sessionSettings->beginGroup("sessions");
+    sessionStore=new HttpSessionStore(sessionSettings,&app);
+
+    // Configure static file controller
+    QSettings* fileSettings=new QSettings(configFileName,QSettings::IniFormat,&app);
+    fileSettings->beginGroup("docroot");
+    staticFileController=new StaticFileController(fileSettings,&app);
+
+    // Configure and start the TCP listener
+    QSettings* listenerSettings=new QSettings(configFileName,QSettings::IniFormat,&app);
+    listenerSettings->beginGroup("listener");
+    new HttpListener(listenerSettings,new RequestMapper(&app),&app);
+
+    qWarning("Application has started");
+    app.exec();
+    qWarning("Application has stopped");
 }
