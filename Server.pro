@@ -19,6 +19,7 @@ HEADERS += \
            include/global.h \
            include/requestmapper.h \
            include/dumpcontroller.h \
+           include/serverapi.h \
            include/templatecontroller.h \
            include/formcontroller.h \
            include/fileuploadcontroller.h \
@@ -31,6 +32,7 @@ SOURCES += src/main.cpp \
            src/global.cpp \
            src/requestmapper.cpp \
            src/dumpcontroller.cpp \
+           src/serverapi.cpp \
            src/templatecontroller.cpp \
            src/formcontroller.cpp \
            src/fileuploadcontroller.cpp \

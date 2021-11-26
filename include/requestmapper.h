@@ -16,27 +16,27 @@ using namespace stefanfrings;
 */
 
 class RequestMapper : public HttpRequestHandler {
-    Q_OBJECT
-    Q_DISABLE_COPY(RequestMapper)
+  Q_OBJECT
+  Q_DISABLE_COPY(RequestMapper)
 public:
 
-    /**
+  /**
       Constructor.
       @param parent Parent object
     */
-    RequestMapper(QObject* parent=0);
+  RequestMapper(QObject* parent=0);
 
-    /**
+  /**
       Destructor.
     */
-    ~RequestMapper();
+  ~RequestMapper();
 
-    /**
+  /**
       Dispatch incoming HTTP requests to different controllers depending on the URL.
       @param request The received HTTP request
       @param response Must be used to return the response
     */
-    void service(HttpRequest& request, HttpResponse& response);
+  void service(HttpRequest& request, HttpResponse& response);
 
 };
 
