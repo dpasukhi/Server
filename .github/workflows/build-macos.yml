@@ -37,6 +37,8 @@ jobs:
       - uses: actions/checkout@v1
         with:
           fetch-depth: 1
+      - name: Checkout submodules
+        run: git submodule update --init --recursive
       - name: build macos
         run: |
           qmake
