@@ -1,0 +1,6 @@
+[submodule "3rdparty/gtest"]
+	path = 3rdparty/gtest
+	url = https://github.com/google/googletest
+[submodule "3rdparty/QtWebApp"]
+	path = 3rdparty/QtWebApp
+	url = https://github.com/fffaraz/QtWebApp.git
