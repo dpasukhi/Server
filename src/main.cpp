@@ -8,6 +8,7 @@
 #include "./include/global.h"
 #include "httplistener.h"
 #include "./include/requestmapper.h"
+#include "./include/dbworker.h"
 
 using namespace stefanfrings;
 
@@ -83,6 +84,11 @@ int main(int argc, char *argv[])
     QSettings* listenerSettings=new QSettings(configFileName,QSettings::IniFormat,&app);
     listenerSettings->beginGroup("listener");
     new HttpListener(listenerSettings,new RequestMapper(&app),&app);
+
+    // Database connection
+    dbworker db;
+    db.connect();
+    db.disconnect();
 
     qWarning("Application has started");
     app.exec();

@@ -13,6 +13,7 @@ TEMPLATE = app
 VPATH += ./src
 
 HEADERS += \
+           include/dbworker.h \
            include/handlerbd.h \
            include/logincontroller.h \
            include/global.h \
@@ -24,6 +25,7 @@ HEADERS += \
            include/sessioncontroller.h
 
 SOURCES += src/main.cpp \
+           dbworker.cpp \
            src/handlerbd.cpp \
            src/logincontroller.cpp \
            src/global.cpp \
