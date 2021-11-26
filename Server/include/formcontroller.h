@@ -1,6 +1,6 @@
 /**
   @file
-  @author Stefan Frings
+
 */
 
 #ifndef FORMCONTROLLER_H

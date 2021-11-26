@@ -1,6 +1,6 @@
 /**
   @file
-  @author Stefan Frings
+
 */
 
 #include "./include/global.h"

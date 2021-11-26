@@ -45,6 +45,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 OTHER_FILES += etc/* etc/docroot/* etc/templates/* etc/ssl/* logs/*
 
-include($$PWD/../3rdparty/QtWebApp/QtWebApp/logging/logging.pri)
-include($$PWD/../3rdparty/QtWebApp/QtWebApp/httpserver/httpserver.pri)
-include($$PWD/../3rdparty/QtWebApp/QtWebApp/templateengine/templateengine.pri)
+include(../3rdparty/QtWebApp/QtWebApp/logging/logging.pri)
+include(../3rdparty/QtWebApp/QtWebApp/httpserver/httpserver.pri)
+include(../3rdparty/QtWebApp/QtWebApp/templateengine/templateengine.pri)
