@@ -6,8 +6,8 @@
 #include <QCoreApplication>
 #include "./include/global.h"
 #include "./include/requestmapper.h"
-#include "filelogger.h"
-#include "staticfilecontroller.h"
+#include <filelogger.h>
+#include <staticfilecontroller.h>
 #include "./include/dumpcontroller.h"
 #include "./include/templatecontroller.h"
 #include "./include/formcontroller.h"

@@ -6,10 +6,10 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
-#include "templatecache.h"
-#include "httpsessionstore.h"
-#include "staticfilecontroller.h"
-#include "filelogger.h"
+#include <templatecache.h>
+#include <httpsessionstore.h>
+#include <staticfilecontroller.h>
+#include <filelogger.h>
 #include "dbworker.h"
 
 using namespace stefanfrings;

@@ -6,7 +6,7 @@
 #include <QDateTime>
 #include "./include/global.h"
 #include "./include/sessioncontroller.h"
-#include "httpsessionstore.h"
+#include <httpsessionstore.h>
 
 SessionController::SessionController()
 {}

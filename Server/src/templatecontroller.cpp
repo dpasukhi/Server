@@ -5,8 +5,8 @@
 
 #include "./include/global.h"
 #include "./include/templatecontroller.h"
-#include "templatecache.h"
-#include "template.h"
+#include <templatecache.h>
+#include <template.h>
 
 TemplateController::TemplateController()
 {}

@@ -6,7 +6,7 @@
 #include <QCoreApplication>
 #include <QDir>
 #include "./include/global.h"
-#include "httplistener.h"
+#include <httplistener.h>
 #include "./include/requestmapper.h"
 #include "./include/dbworker.h"
 

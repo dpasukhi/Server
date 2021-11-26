@@ -6,9 +6,9 @@
 #ifndef DUMPCONTROLLER_H
 #define DUMPCONTROLLER_H
 
-#include "httprequest.h"
-#include "httpresponse.h"
-#include "httprequesthandler.h"
+#include <httprequest.h>
+#include <httpresponse.h>
+#include <httprequesthandler.h>
 
 using namespace stefanfrings;
 

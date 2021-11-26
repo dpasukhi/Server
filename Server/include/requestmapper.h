@@ -6,7 +6,7 @@
 #ifndef REQUESTMAPPER_H
 #define REQUESTMAPPER_H
 
-#include "httprequesthandler.h"
+#include <httprequesthandler.h>
 
 using namespace stefanfrings;
 

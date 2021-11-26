@@ -6,9 +6,9 @@
 #ifndef LOGINCONTROLLER_H
 #define LOGINCONTROLLER_H
 
-#include "httprequest.h"
-#include "httpresponse.h"
-#include "httprequesthandler.h"
+#include <httprequest.h>
+#include <httpresponse.h>
+#include <httprequesthandler.h>
 
 using namespace stefanfrings;
 

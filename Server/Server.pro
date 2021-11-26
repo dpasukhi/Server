@@ -10,7 +10,6 @@ TEMPLATE = app
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-VPATH += ./src
 
 HEADERS += \
            include/dbworker.h \
@@ -26,7 +25,7 @@ HEADERS += \
            include/sessioncontroller.h
 
 SOURCES += src/main.cpp \
-           dbworker.cpp \
+           src/dbworker.cpp \
            src/handlerbd.cpp \
            src/logincontroller.cpp \
            src/global.cpp \
