@@ -18,15 +18,15 @@ using namespace stefanfrings;
 
 
 class FormController : public HttpRequestHandler {
-    Q_OBJECT
-    Q_DISABLE_COPY(FormController)
+  Q_OBJECT
+  Q_DISABLE_COPY(FormController)
 public:
 
-    /** Constructor */
-    FormController();
+  /** Constructor */
+  FormController();
 
-    /** Generates the response */
-    void service(HttpRequest& request, HttpResponse& response);
+  /** Generates the response */
+  void service(HttpRequest& request, HttpResponse& response);
 };
 
 #endif // FORMCONTROLLER_H

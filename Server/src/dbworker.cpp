@@ -1,4 +1,4 @@
-#include "./include/dbworker.h"
+#include <dbworker.h>
 
 dbworker::dbworker(const QSettings* settings, QObject *parent)
   : QObject{parent}
@@ -10,7 +10,7 @@ dbworker::dbworker(const QSettings* settings, QObject *parent)
 
 dbworker::~dbworker()
 {
-    qDebug("dbworker: destroyed");
+  qDebug("dbworker: destroyed");
 }
 
 void dbworker::connect() {
