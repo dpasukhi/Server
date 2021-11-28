@@ -17,15 +17,15 @@ using namespace stefanfrings;
 */
 
 class SessionController : public HttpRequestHandler {
-    Q_OBJECT
-    Q_DISABLE_COPY(SessionController)
+  Q_OBJECT
+  Q_DISABLE_COPY(SessionController)
 public:
 
-    /** Constructor */
-    SessionController();
+  /** Constructor */
+  SessionController();
 
-    /** Generates the response */
-    void service(HttpRequest& request, HttpResponse& response);
+  /** Generates the response */
+  void service(HttpRequest& request, HttpResponse& response);
 };
 
 #endif // SESSIONCONTROLLER_H

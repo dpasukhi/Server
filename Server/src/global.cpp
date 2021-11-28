@@ -3,7 +3,7 @@
 
 */
 
-#include "./include/global.h"
+#include "global.h"
 
 TemplateCache* templateCache;
 HttpSessionStore* sessionStore;

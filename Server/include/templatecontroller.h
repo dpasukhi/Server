@@ -18,15 +18,15 @@ using namespace stefanfrings;
 */
 
 class TemplateController : public HttpRequestHandler {
-    Q_OBJECT
-    Q_DISABLE_COPY(TemplateController)
+  Q_OBJECT
+  Q_DISABLE_COPY(TemplateController)
 public:
 
-    /** Constructor */
-    TemplateController();
+  /** Constructor */
+  TemplateController();
 
-    /** Generates the response */
-    void service(HttpRequest& request, HttpResponse& response);
+  /** Generates the response */
+  void service(HttpRequest& request, HttpResponse& response);
 };
 
 #endif // TEMPLATECONTROLLER_H

@@ -18,15 +18,15 @@ using namespace stefanfrings;
 
 
 class FileUploadController : public HttpRequestHandler {
-    Q_OBJECT
-    Q_DISABLE_COPY(FileUploadController)
+  Q_OBJECT
+  Q_DISABLE_COPY(FileUploadController)
 public:
 
-    /** Constructor */
-    FileUploadController();
+  /** Constructor */
+  FileUploadController();
 
-    /** Generates the response */
-    void service(HttpRequest& request, HttpResponse& response);
+  /** Generates the response */
+  void service(HttpRequest& request, HttpResponse& response);
 };
 
 #endif // FILEUPLOADCONTROLLER_H

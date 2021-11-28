@@ -1,4 +1,4 @@
-#include "./include/serverapi.h"
+#include "serverapi.h"
 
 class ServerAPIData : public QSharedData
 {

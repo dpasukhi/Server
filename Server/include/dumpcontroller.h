@@ -17,15 +17,15 @@ using namespace stefanfrings;
 */
 
 class DumpController : public HttpRequestHandler {
-    Q_OBJECT
-    Q_DISABLE_COPY(DumpController)
+  Q_OBJECT
+  Q_DISABLE_COPY(DumpController)
 public:
 
-    /** Constructor */
-    DumpController();
+  /** Constructor */
+  DumpController();
 
-    /** Generates the response */
-    void service(HttpRequest& request, HttpResponse& response);
+  /** Generates the response */
+  void service(HttpRequest& request, HttpResponse& response);
 };
 
 #endif // DUMPCONTROLLER_H
