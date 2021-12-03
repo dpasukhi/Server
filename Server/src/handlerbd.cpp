@@ -457,7 +457,7 @@ void HandlerBD::stateTable_delete(const stateTable& stateTable){
 //********** Location table **********//
 void HandlerBD::locationTable_create() {
   QSqlQuery query;
-  QString str = "CREATE TABLE state_table ("
+  QString str = "CREATE TABLE location_table ("
                 "id_office integer PRIMARY KEY NOT NULL, "
                 "office VARCHAR(255) NOT NULL "
                 ");";
