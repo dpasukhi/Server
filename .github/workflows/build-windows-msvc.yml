@@ -89,3 +89,11 @@ jobs:
           call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" %vc_arch%
           qmake
           nmake
+      - name: test
+        shell: cmd
+        run: |
+         cd ${{github.workspace}}
+         cd ServerTest
+         cd release
+         dir
+         ServerTest.exe
