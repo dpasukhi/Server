@@ -127,7 +127,7 @@ public:
 
   //********** Product table (pizzas) **********//
   struct productsTable {
-    int id = -1;
+    int id_product = -1;
     QString pizza_name = "";
     QString description = "";
     float cost = -1.f;
