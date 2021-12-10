@@ -19,7 +19,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18.04, ubuntu-20.04]
+        os: [ubuntu-18.04]
     steps:
       - name: Update system
         id: UpdateSystem
@@ -48,5 +48,7 @@ jobs:
         run: git submodule update --init --recursive
       - name: Build project
         id: BuildPorject
-        run: qmake && make
-
+        run: qmake && make all
+      - name: test
+        run:
+         cd ${{github.workspace}} && cd ServerTest && ls -a && ./ServerTest
