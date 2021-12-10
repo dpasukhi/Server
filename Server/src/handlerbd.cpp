@@ -11,25 +11,25 @@ HandlerBD::~HandlerBD()
 }
 
 bool HandlerBD::checkTable(const QString nameTable) {
-  static QStringList List;
+  QStringList List;
   if (List.isEmpty())
     List = db->tables();
   return List.contains(nameTable);
 }
 
 bool HandlerBD::checkUser(const QString nameTable, const QString login, const QString password) {
-  if (!checkTable("deliveryman_table"))
+  if (!checkTable(nameTable))
     return false;
 
   QSqlQuery query;
-  QString str = "SELECT * FROM %1 WHERE email=%2;";
+  QString str = "SELECT * FROM '%1' WHERE email='%2';";
   QString newStr = str.arg(nameTable, login);
   if (!query.exec(newStr)) {
     qDebug() << "Failed to get data!";
   }
 
   if (query.next()) {
-    QString pass = query.value(8).toString();
+    QString pass = query.value(7).toString();
     return pass == password;
   }
 
@@ -179,15 +179,15 @@ void HandlerBD::deliverymanTable_create() {
   }
 }
 
-void HandlerBD::deliverymanTable_insert(const deliverymanTable& clientDeliverymanTable) {
+void HandlerBD::deliverymanTable_insert(const deliverymanTable& deliverymanTable) {
   if (!checkTable("deliveryman_table"))
     deliverymanTable_create();
 
   QSqlQuery a_query;
-  QString str_delete = "SELECT * FROM deliveryman_table WHERE email=%1;";
-  QString strd = str_delete.arg(clientDeliverymanTable.email);
+  QString str_delete = "SELECT * FROM deliveryman_table WHERE email='%1';";
+  QString strd = str_delete.arg(deliverymanTable.email);
   if (!a_query.exec(strd)) {
-    qDebug() << "Failed to get data!";
+    qDebug() << a_query.lastError().text();
   }
   if (a_query.next()) {
     QString email = a_query.value(6).toString();
@@ -195,10 +195,10 @@ void HandlerBD::deliverymanTable_insert(const deliverymanTable& clientDeliveryma
     return;
   }
 
-  str_delete = "SELECT * FROM deliveryman_table WHERE email=%1;";
-  strd = str_delete.arg(clientDeliverymanTable.phone);
+  str_delete = "SELECT * FROM deliveryman_table WHERE phone='%1';";
+  strd = str_delete.arg(deliverymanTable.phone);
   if (!a_query.exec(strd)) {
-    qDebug() << "Failed to get data!";
+    qDebug() << a_query.lastError().text();
   }
   if (a_query.next()) {
     QString phone = a_query.value(5).toString();
@@ -206,16 +206,16 @@ void HandlerBD::deliverymanTable_insert(const deliverymanTable& clientDeliveryma
     return;
   }
 
-  QString str_insert = "INSERT INTO deliveryman_table(id_client, last_name, first_name, middle_name, id_office, phone, email, pass) VALUES (%1, '%2', '%3', '%4', %5, '%6', '%7', '%8');";
-  QString str = str_insert.arg(clientDeliverymanTable.id_deliver).arg(clientDeliverymanTable.last_name).arg(clientDeliverymanTable.first_name).arg(clientDeliverymanTable.middle_name).arg(clientDeliverymanTable.id_office).arg(clientDeliverymanTable.phone).arg(clientDeliverymanTable.email).arg(clientDeliverymanTable.pass);
+  QString str_insert = "INSERT INTO deliveryman_table(id_order, last_name, first_name, middle_name, id_office, phone, email, pass) VALUES (%1, '%2', '%3', '%4', %5, '%6', '%7', '%8');";
+  QString str = str_insert.arg(deliverymanTable.id_deliver).arg(deliverymanTable.last_name).arg(deliverymanTable.first_name).arg(deliverymanTable.middle_name).arg(deliverymanTable.id_office).arg(deliverymanTable.phone).arg(deliverymanTable.email).arg(deliverymanTable.pass);
 
   if (!a_query.exec(str)) {
     qDebug() << "Failed to insert data!";
   }
 }
 
-void HandlerBD::deliverymanTable_update(const deliverymanTable& clientDeliverymanTable) {
-  deliverymanTable_insert(clientDeliverymanTable);
+void HandlerBD::deliverymanTable_update(const deliverymanTable& deliverymanTable) {
+  deliverymanTable_insert(deliverymanTable);
 }
 
 QVector<HandlerBD::deliverymanTable> HandlerBD::deliverymanTable_getAll() {
@@ -246,10 +246,10 @@ bool HandlerBD::checkDeliveryman(const QString login, const QString password) {
   return checkUser("deliveryman_table", login, password);
 }
 
-void HandlerBD::deliverymanTable_delete(const deliverymanTable& clientDeliverymanTable) {
+void HandlerBD::deliverymanTable_delete(const deliverymanTable& deliverymanTable) {
   QSqlQuery a_query;
   QString str_delete = "DELETE FROM deliveryman_table WHERE id_deliver=%1;";
-  QString str = str_delete.arg(clientDeliverymanTable.id_deliver);
+  QString str = str_delete.arg(deliverymanTable.id_deliver);
 
   if (!a_query.exec(str)) {
     qDebug() << "Failed to delete data!";
@@ -457,7 +457,7 @@ void HandlerBD::stateTable_delete(const stateTable& stateTable){
 //********** Location table **********//
 void HandlerBD::locationTable_create() {
   QSqlQuery query;
-  QString str = "CREATE TABLE state_table ("
+  QString str = "CREATE TABLE location_table ("
                 "id_office integer PRIMARY KEY NOT NULL, "
                 "office VARCHAR(255) NOT NULL "
                 ");";
@@ -533,7 +533,7 @@ void HandlerBD::productsTable_insert(const productsTable& productsTable) {
     productsTable_create();
 
   QSqlQuery a_query;
-  QString str_insert = "INSERT INTO products_table(id_product, pizza_name, cost) VALUES (%1, '%2', '%3', %4);";
+  QString str_insert = "INSERT INTO products_table(id, pizza_name, description, cost) VALUES (%1, '%2', '%3', %4);";
   QString str = str_insert.arg(productsTable.id).arg(productsTable.pizza_name).arg(productsTable.description).arg(productsTable.cost);
 
   if (!a_query.exec(str)) {
@@ -570,7 +570,7 @@ QVector<HandlerBD::productsTable> HandlerBD::productsTable_getAll()
 void HandlerBD::productsTable_delete(const productsTable& productsTable)
 {
   QSqlQuery a_query;
-  QString str_delete = "DELETE FROM products_table WHERE id_product=%1;";
+  QString str_delete = "DELETE FROM products_table WHERE id=%1;";
   QString str = str_delete.arg(productsTable.id);
 
   if (!a_query.exec(str)) {
@@ -578,3 +578,139 @@ void HandlerBD::productsTable_delete(const productsTable& productsTable)
   }
 }
 //********************************************//
+
+//********** Order table **********//
+void HandlerBD::orderTable_create() {
+  QSqlQuery query;
+  QString str = "CREATE TABLE order_table ("
+                "id integer PRIMARY KEY NOT NULL, "
+                "status VARCHAR(255) NOT NULL, "
+                "id_client integer NOT NULL, "
+                "adress VARCHAR(255) NOT NULL, "
+                "id_office integer NOT NULL, "
+                "timeStart VARCHAR(255) NOT NULL, "
+                "timeEnd VARCHAR(255) NOT NULL "
+                ");";
+
+  if (!query.exec(str)) {
+    qDebug() << "Failed to create a table!";
+  }
+}
+
+void HandlerBD::orderTable_insert(const orderTable& orderTable) {
+  if (!checkTable("order_table"))
+    productsTable_create();
+
+  QSqlQuery a_query;
+  QString str_insert = "INSERT INTO order_table(id, status, id_client, adress, id_office, timeStart, timeEnd) VALUES (%1, '%2', %3, '%4', %5, '%6', '%7');";
+  QString str = str_insert.arg(orderTable.id).arg(orderTable.status).arg(orderTable.id_client).arg(orderTable.adress).arg(orderTable.id_office).arg(orderTable.timeStart).arg(orderTable.timeEnd);
+
+  if (!a_query.exec(str)) {
+    qDebug() << "Failed to insert data!";
+  }
+}
+
+void HandlerBD::orderTable_update(const orderTable& orderTable)
+{
+  orderTable_insert(orderTable);
+}
+
+QVector<HandlerBD::orderTable> HandlerBD::orderTable_getAll()
+{
+  QSqlQuery a_query;
+  if (!a_query.exec("SELECT * FROM order_table")) {
+    qDebug() << "Failed to get data!";
+  }
+
+  QVector<orderTable> result;
+  while (a_query.next()) {
+    orderTable record;
+    record.id = a_query.value(0).toInt();
+    record.status = a_query.value(1).toString();
+    record.id_client = a_query.value(2).toInt();
+    record.adress = a_query.value(3).toString();
+    record.id_office = a_query.value(4).toInt();
+    record.timeStart = a_query.value(5).toString();
+    record.timeEnd = a_query.value(6).toString();
+
+    result.push_back(record);
+  }
+
+  return result;
+}
+
+void HandlerBD::orderTable_delete(const orderTable& orderTable)
+{
+  QSqlQuery a_query;
+  QString str_delete = "DELETE FROM order_table WHERE id=%1;";
+  QString str = str_delete.arg(orderTable.id);
+
+  if (!a_query.exec(str)) {
+    qDebug() << "Failed to delete data!";
+  }
+}
+//*********************************//
+
+//********** Order compilation table **********//
+void HandlerBD::orderCompilationTable_create() {
+  QSqlQuery query;
+  QString str = "CREATE TABLE orderСompilation_table ("
+                "id integer PRIMARY KEY NOT NULL, "
+                "id_order integer NOT NULL, "
+                "id_pizza integer NOT NULL "
+                ");";
+
+  if (!query.exec(str)) {
+    qDebug() << "Failed to create a table!";
+  }
+}
+
+void HandlerBD::orderCompilationTable_insert(const orderCompilationTable& orderCompilationTable) {
+  if (!checkTable("orderСompilation_table"))
+    productsTable_create();
+
+  QSqlQuery a_query;
+  QString str_insert = "INSERT INTO orderСompilation_table(id, id_order, id_pizza) VALUES (%1, %2, %3);";
+  QString str = str_insert.arg(orderCompilationTable.id).arg(orderCompilationTable.id_order).arg(orderCompilationTable.id_pizza);
+
+  if (!a_query.exec(str)) {
+    qDebug() << "Failed to insert data!";
+  }
+}
+
+void HandlerBD::orderCompilationTable_update(const orderCompilationTable& orderCompilationTable)
+{
+  orderCompilationTable_insert(orderCompilationTable);
+}
+
+QVector<HandlerBD::orderCompilationTable> HandlerBD::orderCompilationTable_getAll()
+{
+  QSqlQuery a_query;
+  if (!a_query.exec("SELECT * FROM orderСompilation_table")) {
+    qDebug() << "Failed to get data!";
+  }
+
+  QVector<orderCompilationTable> result;
+  while (a_query.next()) {
+    orderCompilationTable record;
+    record.id = a_query.value(0).toInt();
+    record.id_order = a_query.value(1).toInt();
+    record.id_pizza = a_query.value(2).toInt();
+
+    result.push_back(record);
+  }
+
+  return result;
+}
+
+void HandlerBD::orderCompilationTable_delete(const orderCompilationTable& orderCompilationTable)
+{
+  QSqlQuery a_query;
+  QString str_delete = "DELETE FROM orderCompilation_table WHERE id=%1;";
+  QString str = str_delete.arg(orderCompilationTable.id);
+
+  if (!a_query.exec(str)) {
+    qDebug() << "Failed to delete data!";
+  }
+}
+//*********************************//
