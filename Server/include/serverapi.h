@@ -2,20 +2,11 @@
 #define SERVERAPI_H
 
 #include <QObject>
-#include <QSharedDataPointer>
-
-class ServerAPIData;
 
 class ServerAPI
 {
 public:
-  ServerAPI();
-  ServerAPI(const ServerAPI &);
-  ServerAPI &operator=(const ServerAPI &);
-  ~ServerAPI();
-
-private:
-  QSharedDataPointer<ServerAPIData> data;
+  virtual int Authorization(const QString& theLogin, const QString& thePassword) = 0;
 };
 
 #endif // SERVERAPI_H

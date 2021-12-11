@@ -21,7 +21,6 @@ SOURCES += \
            $$PWD/src/global.cpp \
            $$PWD/src/requestmapper.cpp \
            $$PWD/src/dumpcontroller.cpp \
-           $$PWD/src/serverapi.cpp \
            $$PWD/src/templatecontroller.cpp \
            $$PWD/src/formcontroller.cpp \
            $$PWD/src/fileuploadcontroller.cpp \
