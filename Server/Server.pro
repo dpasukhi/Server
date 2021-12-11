@@ -24,7 +24,10 @@ HEADERS += \
            $$PWD/include/templatecontroller.h \
            $$PWD/include/formcontroller.h \
            $$PWD/include/fileuploadcontroller.h \
-           $$PWD/include/sessioncontroller.h
+           $$PWD/include/sessioncontroller.h \
+           $$PWD/include/clientapi.h \
+           $$PWD/include/deliverapi.h \
+           $$PWD/include/managerapi.h
 
 SOURCES += \
            $$PWD/src/main.cpp\
@@ -34,11 +37,13 @@ SOURCES += \
            $$PWD/src/global.cpp \
            $$PWD/src/requestmapper.cpp \
            $$PWD/src/dumpcontroller.cpp \
-           $$PWD/src/serverapi.cpp \
            $$PWD/src/templatecontroller.cpp \
            $$PWD/src/formcontroller.cpp \
            $$PWD/src/fileuploadcontroller.cpp \
-           $$PWD/src/sessioncontroller.cpp
+           $$PWD/src/sessioncontroller.cpp \
+           $$PWD/src/clientapi.cpp \
+           $$PWD/src/deliverapi.cpp \
+           $$PWD/src/managerapi.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
