@@ -61,11 +61,11 @@ public:
     QString pass = "";
   };
   void deliverymanTable_create();
-  void deliverymanTable_insert(const deliverymanTable& clientDeliverymanTable);
-  void deliverymanTable_update(const deliverymanTable& clientDeliverymanTable);
+  void deliverymanTable_insert(const deliverymanTable& deliverymanTable);
+  void deliverymanTable_update(const deliverymanTable& deliverymanTable);
   QVector<deliverymanTable> deliverymanTable_getAll();
   bool checkDeliveryman(const QString login, const QString password);
-  void deliverymanTable_delete(const deliverymanTable& clientDeliverymanTable);
+  void deliverymanTable_delete(const deliverymanTable& deliverymanTable);
   //**********************************************//
 
   //********** Client information table **********//
@@ -127,7 +127,7 @@ public:
 
   //********** Product table (pizzas) **********//
   struct productsTable {
-    int id_product = -1;
+    int id = -1;
     QString pizza_name = "";
     QString description = "";
     float cost = -1.f;
@@ -139,6 +139,35 @@ public:
   void productsTable_delete(const productsTable& productsTable);
   //********************************************//
 
+  //********** Order table **********//
+  struct orderTable {
+    int id = -1;
+    QString status = "";
+    int id_client = -1;
+    QString adress = "";
+    int id_office = -1;
+    QString timeStart = "";
+    QString timeEnd = "";
+  };
+  void orderTable_create();
+  void orderTable_insert(const orderTable& orderTable);
+  void orderTable_update(const orderTable& orderTable);
+  QVector<orderTable> orderTable_getAll();
+  void orderTable_delete(const orderTable& orderTable);
+  //********************************************//
+
+  //********** Order compilation table **********//
+  struct orderCompilationTable {
+    int id = -1;
+    int id_order = -1;
+    int id_pizza = -1;
+  };
+  void orderCompilationTable_create();
+  void orderCompilationTable_insert(const orderCompilationTable& orderCompilationTable);
+  void orderCompilationTable_update(const orderCompilationTable& orderCompilationTable);
+  QVector<orderCompilationTable> orderCompilationTable_getAll();
+  void orderCompilationTable_delete(const orderCompilationTable& orderCompilationTable);
+  //********************************************//
 
 };
 

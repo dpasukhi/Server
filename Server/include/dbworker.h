@@ -14,7 +14,7 @@ public:
   ~dbworker();
   void connect();
   void disconnect();
-  HandlerBD* GetWorker() { return &worker; };
+
 private:
   QSqlDatabase db;
   HandlerBD worker;
