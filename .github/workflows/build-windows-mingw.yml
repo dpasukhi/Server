@@ -19,7 +19,7 @@ jobs:
     runs-on: windows-2019
     strategy:
       matrix:
-        qt_ver: [5.12.10, 5.15.2]
+        qt_ver: [5.15.2]
         qt_target: [desktop]
         include:
           - qt_ver: 5.12.10
@@ -57,3 +57,12 @@ jobs:
         run: |
           qmake
           make
+          make check
+      - name: test
+        shell: cmd
+        run: |
+         cd ${{github.workspace}}
+         cd ServerTest
+         cd release
+         dir
+         ServerTest.exe

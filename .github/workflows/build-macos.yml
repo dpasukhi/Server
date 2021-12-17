@@ -19,7 +19,7 @@ jobs:
     runs-on: macos-10.15
     strategy:
       matrix:
-        qt_ver: [5.9.9, 5.12.10, 5.15.2]
+        qt_ver: [5.15.2]
         qt_arch: [clang_64]
     steps:
       - name: Cache Qt
@@ -43,3 +43,6 @@ jobs:
         run: |
           qmake
           make
+      - name: test
+         run: |
+         cd ${{github.workspace}} && cd ServerTest && ls -a && ./ServerTest
