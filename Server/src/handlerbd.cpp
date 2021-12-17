@@ -261,7 +261,7 @@ void HandlerBD::deliverymanTable_delete(const deliverymanTable& deliverymanTable
 void HandlerBD::clientTable_create() {
   QSqlQuery query;
   QString str = "CREATE TABLE client_table ("
-                "id_order integer PRIMARY KEY NOT NULL, "
+                "id_client integer PRIMARY KEY NOT NULL, "
                 "email VARCHAR(255) NOT NULL, "
                 "pass VARCHAR(255) NOT NULL, "
                 "last_name VARCHAR(255) NOT NULL, "
@@ -280,7 +280,7 @@ void HandlerBD::clientTable_insert(const clientTable& clientTable) {
     clientTable_create();
 
   QSqlQuery a_query;
-  QString str_insert = "INSERT INTO client_table(id_client, last_name, first_name, middle_name, phone, email) VALUES (%1, '%2', '%3', '%4', '%5', '%6', '%7');";
+  QString str_insert = "INSERT INTO client_table(id_client, email, pass, last_name, first_name, middle_name, phone) VALUES (%1, '%2', '%3', '%4', '%5', '%6', '%7');";
   QString str = str_insert.arg(clientTable.id_client).arg(clientTable.email).arg(clientTable.pass).arg(clientTable.last_name).arg(clientTable.first_name).arg(clientTable.middle_name).arg(clientTable.phone);
 
   if (!a_query.exec(str)) {
