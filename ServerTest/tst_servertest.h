@@ -32,12 +32,9 @@ TEST(DatabaseTest, deliverymanTable_insert_test)
   aLocalSetting->beginGroup("database");
   dbworker dbW(aLocalSetting);
   dbW.connect();
-  HandlerBD ahDB;
-  //ahDB.deliverymanTable_create(); //DB file and table created
-  //HandlerBD::deliverymanTable deliverymanTable_test = {0,"Test_lname","Test_fname","Test_mname",2,"test_phone","test_email", "test_pass"};
-  //ahDB.deliverymanTable_insert(deliverymanTable_test);
-  //QVector<HandlerBD::deliverymanTable> test1 = ahDB.deliverymanTable_getAll();
-  //ASSERT_THAT(ahDB.checkTable("deliveryman_table"), Eq(true)); //ERROR
+  HandlerBD* ahDB = dbW.GetWorker();
+  ahDB->deliverymanTable_create();
+  ASSERT_THAT(ahDB->checkTable("deliveryman_table"), Eq(true));
   ASSERT_THAT(1, Eq(1));
   dbW.disconnect();
   file.remove();
