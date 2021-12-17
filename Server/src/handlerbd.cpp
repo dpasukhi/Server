@@ -164,7 +164,7 @@ void HandlerBD::clientDeliverymanTable_delete(const clientDeliverymanTable& clie
 void HandlerBD::deliverymanTable_create() {
   QSqlQuery query;
   QString str = "CREATE TABLE deliveryman_table ("
-                "id_order integer PRIMARY KEY NOT NULL, "
+                "id_deliver integer PRIMARY KEY NOT NULL, "
                 "last_name VARCHAR(255) NOT NULL, "
                 "first_name VARCHAR(255) NOT NULL, "
                 "middle_name VARCHAR(255), "
@@ -180,7 +180,7 @@ void HandlerBD::deliverymanTable_create() {
 }
 
 void HandlerBD::deliverymanTable_insert(const deliverymanTable& deliverymanTable) {
-  if (!checkTable("deliveryman_table"))
+  //if (!checkTable("deliveryman_table"))
     deliverymanTable_create();
 
   QSqlQuery a_query;
@@ -206,7 +206,7 @@ void HandlerBD::deliverymanTable_insert(const deliverymanTable& deliverymanTable
     return;
   }
 
-  QString str_insert = "INSERT INTO deliveryman_table(id_order, last_name, first_name, middle_name, id_office, phone, email, pass) VALUES (%1, '%2', '%3', '%4', %5, '%6', '%7', '%8');";
+  QString str_insert = "INSERT INTO deliveryman_table(id_deliver, last_name, first_name, middle_name, id_office, phone, email, pass) VALUES (%1, '%2', '%3', '%4', %5, '%6', '%7', '%8');";
   QString str = str_insert.arg(deliverymanTable.id_deliver).arg(deliverymanTable.last_name).arg(deliverymanTable.first_name).arg(deliverymanTable.middle_name).arg(deliverymanTable.id_office).arg(deliverymanTable.phone).arg(deliverymanTable.email).arg(deliverymanTable.pass);
 
   if (!a_query.exec(str)) {
