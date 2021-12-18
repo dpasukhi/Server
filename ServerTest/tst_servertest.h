@@ -142,11 +142,11 @@ TEST(DatabaseTest, orderProductsTable_Update_Test)
   HandlerBD* ahDB = dbW.GetWorker();
   HandlerBD::orderProductsTable orderProductsTable_test1;
   orderProductsTable_test1.id = 0;
-  orderProductsTable_test1.id_order = 0;
+  orderProductsTable_test1.id_order = 5;
   orderProductsTable_test1.id_product = 2;
   ahDB->orderProductsTable_update(orderProductsTable_test1);
   QVector<HandlerBD::orderProductsTable> test1 = ahDB->orderProductsTable_getAll();
-  ASSERT_THAT(test1[0].id_order,Eq(1));
+  ASSERT_THAT(test1[0].id_order,Eq(5));
   dbW.disconnect();
   file.remove();
   dbfile.remove();
