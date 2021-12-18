@@ -1,8 +1,3 @@
-/**
-  @file
-
-*/
-
 #include <QCoreApplication>
 #include <QDir>
 #include "global.h"

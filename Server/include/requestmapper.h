@@ -1,20 +1,13 @@
-/**
-  @file
-
-*/
-
 #ifndef REQUESTMAPPER_H
 #define REQUESTMAPPER_H
 
 #include <httprequesthandler.h>
 
-using namespace stefanfrings;
-
 /**
   The request mapper dispatches incoming HTTP requests to controller classes
   depending on the requested path.
 */
-
+using namespace stefanfrings;
 class RequestMapper : public HttpRequestHandler {
   Q_OBJECT
   Q_DISABLE_COPY(RequestMapper)

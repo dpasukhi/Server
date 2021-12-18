@@ -1,8 +1,3 @@
-/**
-  @file
-
-*/
-
 #include "global.h"
 
 TemplateCache* templateCache;

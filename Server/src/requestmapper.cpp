@@ -1,19 +1,11 @@
-/**
-  @file
-
-*/
-
 #include <QCoreApplication>
 #include "global.h"
 #include "requestmapper.h"
 #include <filelogger.h>
 #include <staticfilecontroller.h>
-#include "dumpcontroller.h"
-#include "templatecontroller.h"
-#include "formcontroller.h"
-#include "fileuploadcontroller.h"
-#include "sessioncontroller.h"
-#include "logincontroller.h"
+#include <managercontroller.h>
+#include <delivercontroller.h>
+#include <customercontroller.h>'
 
 RequestMapper::RequestMapper(QObject* parent)
   :HttpRequestHandler(parent)
@@ -35,36 +27,18 @@ void RequestMapper::service(HttpRequest& request, HttpResponse& response)
 
   // For the following pathes, each request gets its own new instance of the related controller.
 
-  if (path.startsWith("/dump"))
+  if (path.startsWith("/customer"))
   {
-    DumpController().service(request, response);
+    CustomerController().service(request, response);
   }
-
-  else if (path.startsWith("/template"))
+  else if (path.startsWith("/manager"))
   {
-    TemplateController().service(request, response);
+    ManagerController().service(request, response);
   }
-
-  else if (path.startsWith("/form"))
+  else if (path.startsWith("/deliver"))
   {
-    FormController().service(request, response);
+    DeliverController().service(request, response);
   }
-
-  else if (path.startsWith("/file"))
-  {
-    FileUploadController().service(request, response);
-  }
-
-  else if (path.startsWith("/session"))
-  {
-    SessionController().service(request, response);
-  }
-
-  else if (path.startsWith("/login"))
-  {
-    LoginController().service(request, response);
-  }
-
   // All other pathes are mapped to the static file controller.
   // In this case, a single instance is used for multiple requests.
   else
