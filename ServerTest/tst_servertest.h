@@ -144,7 +144,7 @@ TEST(DatabaseTest, orderProductsTable_Update_Test)
   orderProductsTable_test1.id = 0;
   orderProductsTable_test1.id_order = 0;
   orderProductsTable_test1.id_product = 2;
-  ahDB->orderProductsTable_update({0,1,2});
+  ahDB->orderProductsTable_update(orderProductsTable_test1);
   QVector<HandlerBD::orderProductsTable> test1 = ahDB->orderProductsTable_getAll();
   ASSERT_THAT(test1[0].id_order,Eq(1));
   dbW.disconnect();
