@@ -180,7 +180,7 @@ void HandlerBD::deliverymanTable_create() {
 }
 
 void HandlerBD::deliverymanTable_insert(const deliverymanTable& deliverymanTable) {
-  //if (!checkTable("deliveryman_table"))
+  if (!checkTable("deliveryman_table"))
     deliverymanTable_create();
 
   QSqlQuery a_query;
@@ -316,7 +316,19 @@ QVector<HandlerBD::clientTable> HandlerBD::clientTable_getAll() {
 }
 
 bool HandlerBD::checkClient(const QString login, const QString password) {
-  return checkUser("client_table", login, password);
+  QSqlQuery query;
+  QString str = "SELECT * FROM client_table WHERE email='%1';";
+  QString newStr = str.arg(login);
+  if (!query.exec(newStr)) {
+    qDebug() << "Failed to get data!";
+  }
+
+  if (query.next()) {
+    QString pass = query.value(2).toString();
+    return pass == password;
+  }
+
+  return false;
 }
 
 void HandlerBD::clientTable_delete(const clientTable& clientTable) {
@@ -520,7 +532,7 @@ void HandlerBD::productsTable_create() {
                 "id integer PRIMARY KEY NOT NULL, "
                 "pizza_name VARCHAR(255) NOT NULL, "
                 "description VARCHAR(255) NOT NULL, "
-                "cost FLOAT NOT NULL, "
+                "cost FLOAT NOT NULL "
                 ");";
 
   if (!query.exec(str)) {
@@ -654,7 +666,7 @@ void HandlerBD::orderTable_delete(const orderTable& orderTable)
 //********** Order compilation table **********//
 void HandlerBD::orderCompilationTable_create() {
   QSqlQuery query;
-  QString str = "CREATE TABLE orderСompilation_table ("
+  QString str = "CREATE TABLE orderCompilation_table ("
                 "id integer PRIMARY KEY NOT NULL, "
                 "id_order integer NOT NULL, "
                 "id_pizza integer NOT NULL "
@@ -666,11 +678,11 @@ void HandlerBD::orderCompilationTable_create() {
 }
 
 void HandlerBD::orderCompilationTable_insert(const orderCompilationTable& orderCompilationTable) {
-  if (!checkTable("orderСompilation_table"))
+  if (!checkTable("orderCompilation_table"))
     productsTable_create();
 
   QSqlQuery a_query;
-  QString str_insert = "INSERT INTO orderСompilation_table(id, id_order, id_pizza) VALUES (%1, %2, %3);";
+  QString str_insert = "INSERT INTO orderCompilation_table(id, id_order, id_pizza) VALUES (%1, %2, %3);";
   QString str = str_insert.arg(orderCompilationTable.id).arg(orderCompilationTable.id_order).arg(orderCompilationTable.id_pizza);
 
   if (!a_query.exec(str)) {
@@ -686,7 +698,7 @@ void HandlerBD::orderCompilationTable_update(const orderCompilationTable& orderC
 QVector<HandlerBD::orderCompilationTable> HandlerBD::orderCompilationTable_getAll()
 {
   QSqlQuery a_query;
-  if (!a_query.exec("SELECT * FROM orderСompilation_table")) {
+  if (!a_query.exec("SELECT * FROM orderCompilation_table")) {
     qDebug() << "Failed to get data!";
   }
 
