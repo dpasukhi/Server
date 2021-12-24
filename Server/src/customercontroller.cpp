@@ -15,7 +15,6 @@ void CustomerController::service(HttpRequest& request,
   {
     QFile aFile;
     QString aPath =  QDir::currentPath() +"/../../Server/Server/etc/templates/message.json";
-    std:: cout << aPath.toStdString();
     aFile.setFileName(aPath);
     if (aFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
