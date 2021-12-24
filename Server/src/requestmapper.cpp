@@ -5,7 +5,7 @@
 #include <staticfilecontroller.h>
 #include <managercontroller.h>
 #include <delivercontroller.h>
-#include <customercontroller.h>'
+#include <customercontroller.h>
 
 RequestMapper::RequestMapper(QObject* parent)
   :HttpRequestHandler(parent)
