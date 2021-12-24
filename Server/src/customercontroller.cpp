@@ -1,7 +1,7 @@
 #include "customercontroller.h"
 #include <QDir>
 #include <QDebug>
-#include <iostream>
+
 CustomerController::CustomerController()
 {
 
