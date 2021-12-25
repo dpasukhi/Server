@@ -15,6 +15,8 @@ class ManagerController : public HttpRequestHandler
 
    /** Generates the response */
    void service(HttpRequest& request, HttpResponse& response);
+
+   QByteArray parseOrder();
  };
 
 #endif // MANAGERCONTROLLER_H

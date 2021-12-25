@@ -10,6 +10,17 @@ class CustomerController : public HttpRequestHandler
 {
   Q_OBJECT
   Q_DISABLE_COPY(CustomerController)
+
+private:
+
+  struct OrderSet
+  {
+    qint32 myOrderCount;
+    qint32 myOrderOfficeID;
+    qint32 mySumPrice;
+    QString myOrderAdress;
+    QVector <qint32> myOrderID;
+  };
  public:
 
    /** Constructor */
@@ -18,33 +29,19 @@ class CustomerController : public HttpRequestHandler
   /** Generates the response */
   void service(HttpRequest& request, HttpResponse& response);
 
-  bool authorization(const QString& theLogin,
-                     const QString& thePassword);
+  QByteArray parseProduct();
 
-  bool registration(const QString& theName,
-                    const QString& theMiddleName,
-                    const QString& theLastName,
-                    const QString& thePhone,
-                    const QString& theEmail,
-                    const QString& theLogin,
-                    const QString& thePassword);
+  QByteArray parseOffices();
 
-  bool requestProducts();
+  OrderSet parseOrder(const QByteArray& theJson);
 
-  bool requestProducts(const QString& thePath);
+  void ContentOrder(const OrderSet& theSet, HttpRequest& request);
 
-  bool requestOffices();
+  qint32 ClientNewID();
 
-  bool requestOffices(const QString& thePath);
+  qint32 OrderNewID();
 
-
-  void parseProduct(const QByteArray& theArray);
-
-  void parseOffices(const QByteArray& theArray);
-
-  void parseOrder(const QByteArray& theArray);
-
-private:
+  qint32 OrderCompilationNewID();
 
  };
 
