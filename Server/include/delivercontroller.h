@@ -17,6 +17,9 @@ class DeliverController : public HttpRequestHandler
 
    /** Generates the response */
    void service(HttpRequest& request, HttpResponse& response);
+
+   QByteArray parseOrder();
+
  };
 
 #endif // DELIVERCONTROLLER_H

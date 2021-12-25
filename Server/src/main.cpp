@@ -92,7 +92,60 @@ int main(int argc, char *argv[])
   databaseSettings->beginGroup("database");
   db=new dbworker(databaseSettings,&app);
   db->connect();
-  db->disconnect();
+
+//  HandlerBD* myWorker = db->GetWorker();
+
+//  // Offices
+//  HandlerBD::locationTable aLoc1 { 1, "ул. Литвинова, 74, корп. 30, Нижний Новгород"};
+//  HandlerBD::locationTable aLoc2 { 2, "ул. Звездинка, 11, корп. 1, Нижний Новгород"};
+//  HandlerBD::locationTable aLoc3 { 3, "Керченская ул., 26, Нижний Новгород"};
+//  HandlerBD::locationTable aLoc4 { 4, "ул. Чаадаева, 1АЧ, Нижний Новгород"};
+//  myWorker->locationTable_insert(aLoc1);
+//  myWorker->locationTable_insert(aLoc2);
+//  myWorker->locationTable_insert(aLoc3);
+//  myWorker->locationTable_insert(aLoc4);
+
+//  //********** Deliveryman information table **********//
+//  HandlerBD::deliverymanTable aDel1 {1, "Name 1", "Name 1", "Name 1", 1, "8878888888", "admin1", "admin1" };
+//  HandlerBD::deliverymanTable aDel2 {2, "Name 2", "Name 2", "Name 2", 1, "88888088888", "admin2", "admin2" };
+//  HandlerBD::deliverymanTable aDel3 {3, "Name 3", "Name 3", "Name 3", 1, "88888088888", "admin3", "admin3" };
+//  HandlerBD::deliverymanTable aDel4 {4, "Name 4", "Name 4", "Name 4", 1, "88088888888", "admin4", "admin4" };
+//  myWorker->deliverymanTable_insert(aDel1);
+//  myWorker->deliverymanTable_insert(aDel2);
+//  myWorker->deliverymanTable_insert(aDel3);
+//  myWorker->deliverymanTable_insert(aDel4);
+
+//  //********** Product table (pizzas) **********//
+//  HandlerBD::productsTable aPizza1 {1, "Деревенское Барбекю", "Сезон барбекю! Ароматная свинина, пикантная пепперони, шампиньоны, лук, зеленый перец с сыром Моцарелла и соусом барбекю", 499};
+//  HandlerBD::productsTable aPizza2 {2, "Чикен Пармеджано", "Нежный вкус: сочное куриное филе, шампиньоны, сыр Чеддер и сыр Моцарелла, орегано, соус Пармеджано", 499};
+//  HandlerBD::productsTable aPizza3 {3, "Пепперони с медом и халапеньо", "The Bee Sting - пицца с пепперони, цветочным медом, острым халапеньо, сыром Моцарелла и фирменным томатным соусом", 499};
+//  HandlerBD::productsTable aPizza4 {4, "Хот Пепперони", "Еще горячее! Американская классика с пикантной пепперони, Моцареллой и фирменным томатным соусом с острым халапеньо", 499};
+//  HandlerBD::productsTable aPizza5 {5, "Ветчина и бекон", "Соус 1000 островов, ароматная ветчина, хрустящий бекон, зеленый перец, шампиньоны, сыр Моцарелла и смесь итальянских трав", 499};
+//  HandlerBD::productsTable aPizza6 {6, "Деревенское Барбекю", "Сезон барбекю! Ароматная свинина, пикантная пепперони, шампиньоны, лук, зеленый перец с сыром Моцарелла и соусом барбекю", 499};
+//  HandlerBD::productsTable aPizza7 {7, "Чикен Пармеджано", "Нежный вкус: сочное куриное филе, шампиньоны, сыр Чеддер и сыр Моцарелла, орегано, соус Пармеджано", 499};
+//  HandlerBD::productsTable aPizza8 {8, "Пепперони с медом и халапеньо", "The Bee Sting - пицца с пепперони, цветочным медом, острым халапеньо, сыром Моцарелла и фирменным томатным соусом", 499};
+//  HandlerBD::productsTable aPizza9 {9, "Хот Пепперони", "Еще горячее! Американская классика с пикантной пепперони, Моцареллой и фирменным томатным соусом с острым халапеньо", 499};
+//  HandlerBD::productsTable aPizza10 {10, "Ветчина и бекон", "Соус 1000 островов, ароматная ветчина, хрустящий бекон, зеленый перец, шампиньоны, сыр Моцарелла и смесь итальянских трав", 499};
+//  myWorker->productsTable_insert(aPizza1);
+//  myWorker->productsTable_insert(aPizza2);
+//  myWorker->productsTable_insert(aPizza3);
+//  myWorker->productsTable_insert(aPizza4);
+//  myWorker->productsTable_insert(aPizza5);
+//  myWorker->productsTable_insert(aPizza6);
+//  myWorker->productsTable_insert(aPizza7);
+//  myWorker->productsTable_insert(aPizza8);
+//  myWorker->productsTable_insert(aPizza9);
+//  myWorker->productsTable_insert(aPizza10);
+
+//  //********** Table for states **********//
+//  HandlerBD::stateTable aStat1 {1, "0"};
+//  HandlerBD::stateTable aStat2 {2, "1"};
+//  HandlerBD::stateTable aStat3 {3, "2"};
+//  myWorker->stateTable_insert(aStat1);
+//  myWorker->stateTable_insert(aStat2);
+//  myWorker->stateTable_insert(aStat3);
+
+
 
   qWarning("Application has started");
   app.exec();
